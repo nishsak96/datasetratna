@@ -19,7 +19,7 @@
 
 
     <?php
-		
+		setcookie('login',1,time()-36000);
 		//include 'connect.php';
 		
 		if(isset($_POST['uniqueid'])&&isset($_POST['password']))

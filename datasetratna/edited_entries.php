@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>InsideDATA</title>
+	<title>Deleted Entries</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script src="js/bootstrap.min.js"></script>
 	
@@ -26,6 +26,7 @@
 		    				<li><a href="party_balance.php">Party Balance</a></li>
 		    				<li><a href="delete_entry.php">DeleteEntry</a></li>
 		    				<li><a href="edit_entry.php">EditEntry</a></li>
+		    				<li><a href="edited_entries.php">EditedEntries</a></li>
 		    			</ul>
 		    			<ul class="nav navbar-nav navbar-right"><li><a href="signout.php">Logout</a></li></ul>
 		    		</div>';
@@ -63,8 +64,7 @@
 		
 		include 'connect.php';
 
-		$query1='SELECT * FROM `Sheet2` ORDER BY `date` desc';
-		$query2='SELECT * FROM `Sheet1` ORDER BY `date` desc';
+		$query1='SELECT * FROM `edit_log` ORDER BY `id` desc';
 		$result=mysqli_query($dbconnnect,$query1);
 		//$issue=mysql_fetch_assoc($result);
 		$issue = array();
@@ -75,33 +75,24 @@
 		    //echo "<br>";
 		}
 		///echo $r=mysql_num_rows($result);
-		$result=mysqli_query($dbconnnect,$query2);
-		//$recept=mysql_fetch_array($result);
-		//print_r($issue);
-		$recept = array();
-
-		while($row = mysqli_fetch_assoc($result)){
-		    array_push($recept, $row);
-		    //print_r($recept);
-		    //echo "<br>";
-		}
 		//echo $a=count($issue);
 		echo "<br>";
 
 		//print_r($issue[0]);
 		
 		echo '<div class="col-sm-5">
-		<h3><b>Issue</b></h3>
+		<h3><b>Edited Entries</b></h3>
 		<table class="table table-bordered">
 	    <thead>
 	      <tr>
 	      	<th>Id</th>
+	      	<th>Bill Type</th>
 	        <th>Date</th>
 	        <th>Name</th>
-	        <th>Amount</th>
-	        <th>Purity</th>
-	        <th>PureAmount</th>
-	        <th>Type</th>
+	        <th>Old Amount</th>
+	        <th>Old Purity</th>
+	        <th>Old PureAmount</th>
+	        <th>Old Type</th>
 	      </tr>
 	    </thead>
 	    <tbody>';
@@ -109,7 +100,8 @@
 		for($i=0;$i<count($issue);$i++)
 		{
 			echo '<tr>
-			<td>'.$issue[$i]["id"].'</td>
+			<td>'.$issue[$i]["old_id"].'</td>
+			<td>'.$issue[$i]["bill_type"].'</td>
 	        <td>'.$issue[$i]["date"].'</td>
 	        <td>'.$issue[$i]["name"].'</td>
 	        <td>'.$issue[$i]["amount"].'</td>
@@ -124,36 +116,6 @@
 		</div>';
 				
 
-		echo '<div class="col-sm-offset-2 col-sm-5">
-		<h3><b>Receipt</b></h3>
-		<table class="table table-bordered">
-	    <thead>
-	      <tr>
-	      	<th>Id</th>
-	        <th>Date</th>
-	        <th>Name</th>
-	        <th>Amount</th>
-	        <th>Purity</th>
-	        <th>PureAmount</th>
-	        <th>Type</th>
-	      </tr>
-	    </thead>
-	    <tbody>';
-		for($i=0;$i<count($recept);$i++)
-		{
-			echo '<tr>
-			<td>'.$recept[$i]["id"].'</td>
-	        <td>'.$recept[$i]["date"].'</td>
-	        <td>'.$recept[$i]["name"].'</td>
-	        <td>'.$recept[$i]["amount"].'</td>
-	        <td>'.$recept[$i]["purity"].'</td>
-	        <td>'.$recept[$i]["pure_amount"].'</td>
-	        <td>'.$recept[$i]["type"].'</td>
-	      	</tr>';
-		}
-		echo '  </tbody>
-	    </table>
-		</div>';
 		// if(isset($_POST['uniqueid'])&&isset($_POST['password']))
 		// {
 		// 	$uni=mysql_real_escape_string($_POST['uniqueid']);

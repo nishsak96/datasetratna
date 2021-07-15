@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>InsideDATA</title>
+	<title>CheckBalance</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script src="js/bootstrap.min.js"></script>
 	
@@ -24,6 +24,8 @@
 		    				<li><a href="recept.php">Recept</a></li>
 		    				<li><a href="balance.php">CheckBalance</a></li>
 		    				<li><a href="party_balance.php">Party Balance</a></li>
+		    				<li><a href="delete_entry.php">DeleteEntry</a></li>
+		    				<li><a href="edit_entry.php">EditEntry</a></li>
 		    			</ul>
 		    			<ul class="nav navbar-nav navbar-right"><li><a href="signout.php">Logout</a></li></ul>
 		    		</div>';
@@ -119,6 +121,7 @@
 		<table class="table table-bordered">
 	    <thead>
 	      <tr>
+	     	<th>Id</th>
 	        <th>Date</th>
 	        <th>Name</th>
 	        <th>Amount</th>
@@ -132,6 +135,7 @@
 		for($i=0;$i<count($issue);$i++)
 		{
 			echo '<tr>
+			<td>'.$issue[$i]["id"].'</td>
 	        <td>'.$issue[$i]["date"].'</td>
 	        <td>'.$issue[$i]["name"].'</td>
 	        <td>'.$issue[$i]["amount"].'</td>
@@ -151,6 +155,7 @@
 		<table class="table table-bordered">
 	    <thead>
 	      <tr>
+	      	<th>Id</th>
 	        <th>Date</th>
 	        <th>Name</th>
 	        <th>Amount</th>
@@ -163,6 +168,7 @@
 		for($i=0;$i<count($recept);$i++)
 		{
 			echo '<tr>
+			<td>'.$recept[$i]["id"].'</td>
 	        <td>'.$recept[$i]["date"].'</td>
 	        <td>'.$recept[$i]["name"].'</td>
 	        <td>'.$recept[$i]["amount"].'</td>

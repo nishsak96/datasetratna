@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>InsideDATA</title>
+	<title>PartyBalance</title>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<script src="js/bootstrap.min.js"></script>
 	
@@ -24,6 +24,8 @@
 		    				<li><a href="recept.php">Recept</a></li>
 		    				<li><a href="balance.php">CheckBalance</a></li>
 		    				<li><a href="party_balance.php">Party Balance</a></li>
+		    				<li><a href="delete_entry.php">DeleteEntry</a></li>
+		    				<li><a href="edit_entry.php">EditEntry</a></li>
 		    			</ul>
 		    			<ul class="nav navbar-nav navbar-right"><li><a href="signout.php">Logout</a></li></ul>
 		    		</div>';
@@ -97,11 +99,10 @@
 		    //echo "<br>";
 		}*/
 
+	$sum=0;
+
 	for($iv=0;$iv<count($issuemain);$iv++)
 	{
-
-
-
 		$tempname=$issuemain[$iv]["name"];
 
    $query="SELECT SUM(pure_amount) FROM `Sheet2` WHERE name='$tempname'";
@@ -114,6 +115,7 @@
    //echo "<br>";
    //print_r($b[0]);
    $c[$iv]=(float)($a[0]-$b[0]);
+   $sum=$sum+$c[$iv];
    //echo "<p align='center' style='color:red; font-size:36px;' ><b>$c[0]</b></p>";
 }
 
@@ -126,7 +128,10 @@ echo '<div class="col-sm-5">
 	        <th>Balance</th>
 	      </tr>
 	    </thead>
-	    <tbody>';
+	    <tbody>
+	    <tr>
+	    <td><b>Total balance</b></td>
+	    <td><b>'.$sum.'</b></td>';
 		
 		for($i=0;$i<count($issuemain);$i++)
 		{
